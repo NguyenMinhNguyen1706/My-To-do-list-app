@@ -2,22 +2,528 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ưng dụng To-do List </title>
-</head>
-<body>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NextUp - Smart Task Manager</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
-    <p class="title">Danh sách việc cần làm:</p>
+</head>
 
-    <div class = "input-container ">
-        <input type="text" class="input" placeholder="Nhập việc cần làm...">
-        <input type="date" class="input-date">
-        <button class="add-button">Thêm</button>
+<body>
+
+    <div class="app">
+
+        <!-- =========================
+             LEFT SIDEBAR
+        ========================== -->
+        <aside class="sidebar">
+
+            <!-- Logo -->
+            <div class="logo">
+                <div class="logo-icon">
+                    ✓
+                </div>
+
+                <span>NextUp</span>
+            </div>
+
+
+            <!-- Navigation -->
+            <nav class="navigation">
+
+                <button
+                    class="nav-item active"
+                    data-page="now"
+                >
+                    <span class="nav-icon">⚡</span>
+                    <span>Now</span>
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-page="today"
+                >
+                    <span class="nav-icon">◷</span>
+                    <span>Today</span>
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-page="upcoming"
+                >
+                    <span class="nav-icon">▣</span>
+                    <span>Upcoming</span>
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-page="insights"
+                >
+                    <span class="nav-icon">▥</span>
+                    <span>Insights</span>
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-page="settings"
+                >
+                    <span class="nav-icon">⚙</span>
+                    <span>Settings</span>
+                </button>
+
+            </nav>
+
+
+            <!-- User -->
+            <div class="user-profile">
+
+                <div class="avatar">
+                    DU
+                </div>
+
+                <div>
+                    <div class="user-name">
+                        Demo User
+                    </div>
+
+                    <div class="user-plan">
+                        Pro Plan
+                    </div>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =========================
+             MAIN CONTENT
+        ========================== -->
+        <main class="main-content">
+
+            <!-- Header -->
+            <header class="page-header">
+
+                <h1>
+                    Good morning
+                </h1>
+
+                <p id="current-date">
+                    Monday, September 21
+                </p>
+
+            </header>
+
+
+
+            <!-- Context Control -->
+            <section class="control-card">
+
+                <div class="control-group">
+
+                    <label>
+                        HOW MUCH TIME DO YOU HAVE?
+                    </label>
+
+                    <div class="chip-container">
+
+                        <button
+                            class="time-chip"
+                            data-time="15"
+                        >
+                            15m
+                        </button>
+
+                        <button
+                            class="time-chip"
+                            data-time="30"
+                        >
+                            30m
+                        </button>
+
+                        <button
+                            class="time-chip selected"
+                            data-time="45"
+                        >
+                            45m
+                        </button>
+
+                        <button
+                            class="time-chip"
+                            data-time="60"
+                        >
+                            1h
+                        </button>
+
+                        <button
+                            class="time-chip"
+                            data-time="120"
+                        >
+                            2h
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="divider"></div>
+
+
+                <div class="control-group">
+
+                    <label>
+                        HOW'S YOUR ENERGY?
+                    </label>
+
+                    <div class="energy-selector">
+
+                        <button
+                            class="energy-button"
+                            data-energy="low"
+                        >
+                            Low
+                        </button>
+
+                        <button
+                            class="energy-button selected"
+                            data-energy="medium"
+                        >
+                            Medium
+                        </button>
+
+                        <button
+                            class="energy-button"
+                            data-energy="high"
+                        >
+                            High
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 DO THIS NEXT
+            ========================== -->
+            <section class="next-task-card">
+
+                <div class="next-task-content">
+
+                    <div class="next-label">
+                        <span>DO THIS NEXT</span>
+
+                        <span class="status-dot"></span>
+                    </div>
+
+                    <h2 id="next-task-title">
+                        Finish Chapter 3 report
+                    </h2>
+
+                    <p id="next-task-meta">
+                        30 min · Due today 5 PM
+                    </p>
+
+                    <div class="tags">
+
+                        <span class="tag">
+                            Study
+                        </span>
+
+                        <span class="tag priority">
+                            High priority
+                        </span>
+
+                    </div>
+
+
+                    <div class="action-buttons">
+
+                        <button
+                            id="start-focus-button"
+                            class="button primary"
+                        >
+                            ▶ Start focus
+                        </button>
+
+                        <button
+                            id="mark-done-button"
+                            class="button secondary"
+                        >
+                            ✓ Mark done
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Focus Timer -->
+                <div class="timer">
+
+                    <div class="timer-circle">
+
+                        <div class="timer-value" id="timer-value">
+                            25:00
+                        </div>
+
+                        <div class="timer-label">
+                            FOCUS
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 BACKUP OPTIONS
+            ========================== -->
+            <section class="backup-section">
+
+                <div class="section-header">
+
+                    <h3>
+                        BACKUP OPTIONS
+                    </h3>
+
+                    <span>
+                        Matches current energy
+                    </span>
+
+                </div>
+
+
+                <div class="backup-grid">
+
+                    <button class="backup-card">
+
+                        <div class="backup-icon">
+                            ✉
+                        </div>
+
+                        <div class="backup-content">
+
+                            <strong>
+                                Reply to emails
+                            </strong>
+
+                            <span>
+                                10 min · Communication
+                            </span>
+
+                        </div>
+
+                        <div class="backup-arrow">
+                            →
+                        </div>
+
+                    </button>
+
+
+
+                    <button class="backup-card">
+
+                        <div class="backup-icon">
+                            🛒
+                        </div>
+
+                        <div class="backup-content">
+
+                            <strong>
+                                Buy groceries
+                            </strong>
+
+                            <span>
+                                20 min · Errands
+                            </span>
+
+                        </div>
+
+                        <div class="backup-arrow">
+                            →
+                        </div>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+
+        <!-- =========================
+             RIGHT PANEL
+        ========================== -->
+        <aside class="today-panel">
+
+            <div>
+
+                <div class="today-header">
+
+                    <h2>
+                        Today
+                    </h2>
+
+                    <span id="task-count">
+                        5 tasks
+                    </span>
+
+                </div>
+
+
+                <!-- Progress -->
+                <div class="progress-card">
+
+                    <div class="progress-circle">
+
+                        <span id="progress-value">
+                            60%
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong id="progress-text">
+                            3 of 5 done
+                        </strong>
+
+                        <span>
+                            On track for today
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Task list -->
+                <div class="task-list">
+
+                    <div class="task-list-title">
+                        TASK LIST
+                    </div>
+
+
+                    <div
+                        class="task-item completed"
+                        data-task-id="1"
+                    >
+                        <div class="checkbox">
+                            ✓
+                        </div>
+
+                        <span>
+                            Morning workout
+                        </span>
+                    </div>
+
+
+                    <div
+                        class="task-item completed"
+                        data-task-id="2"
+                    >
+                        <div class="checkbox">
+                            ✓
+                        </div>
+
+                        <span>
+                            Team standup
+                        </span>
+                    </div>
+
+
+                    <div
+                        class="task-item completed"
+                        data-task-id="3"
+                    >
+                        <div class="checkbox">
+                            ✓
+                        </div>
+
+                        <span>
+                            Pay electricity bill
+                        </span>
+                    </div>
+
+
+                    <div
+                        class="task-item active-task"
+                        data-task-id="4"
+                    >
+                        <div class="checkbox"></div>
+
+                        <div class="task-info">
+
+                            <span>
+                                Finish Chapter 3 report
+                            </span>
+
+                            <small>
+                                Active right now
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="task-item"
+                        data-task-id="5"
+                    >
+                        <div class="checkbox"></div>
+
+                        <span>
+                            Reply to emails
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Add Task -->
+            <button
+                id="add-task-button"
+                class="add-task-button"
+            >
+                + Add task
+            </button>
+
+        </aside>
+
     </div>
 
-    <div class="to-do-list menu"></div>
-    </div>
 
-    <script src="script.js"></script>
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+
 </body>
 </html>
